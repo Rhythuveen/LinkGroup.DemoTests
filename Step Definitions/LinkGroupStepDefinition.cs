@@ -11,12 +11,12 @@ namespace LinkGroup.DemoTests.Step_Definitions
 {
     [Binding]
     //Common steps is the step definition file which binds the link feature files
-    class CommonSteps
+    class LinkGroupStepDefinition
     {
         BrowserSteps browser;
         IWebDriver driver;
         PageObjectModel.LinkHome homeObj;
-        PageObjectModel.LinkFundHome fundObj;
+       
         [StepDefinition(@"I open the home page")]
         public void WhenIOpenTheHomePage()
         {
@@ -40,30 +40,7 @@ namespace LinkGroup.DemoTests.Step_Definitions
 
         }
 
-        [When(@"i open the Fund Solutions page")]
-        public void WhenIOpenTheFundSolutionsPage()
-        {
-            try { 
-                browser = BrowserSteps.getBrowserInstance("chrome", null);
-                driver = browser.GetDriver();
-                fundObj = new PageObjectModel.LinkFundHome(driver);
-                driver.Navigate().GoToUrl("https://www.linkfundsolutions.co.uk/");
-
-                driver.Manage().Window.Maximize();
-            Console.WriteLine("Browser is launched successfully");
-        }
-            catch(WebDriverException webex)
-            {
-                Console.WriteLine("Webdriver exception caught " + webex);
-            }
-
-
-}
-        [Then(@"i can select the (.*) Jurisdiction")]
-        public void ThenICanSelectTheUnitedKingdomJurisdiction(string value)
-        {
-            fundObj.LinkActiveVerification(value);
-        }
+       
 
 
 
